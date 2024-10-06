@@ -23,6 +23,6 @@ https://github.com/Drewplonq/tf4hmwrk/tree/main/vpc
 
 
 
-### <img src="https://github.com/user-attachments/assets/780001bf-022b-4650-8fb3-58ac295bc7e9" width ="500" >
+### <img src="https://github.com/user-attachments/assets/780001bf-022b-4650-8fb3-58ac295bc7e9" width ="700" >
 
 
