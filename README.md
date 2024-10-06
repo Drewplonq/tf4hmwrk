@@ -10,6 +10,9 @@
 ### Задание 2
 
 https://github.com/Drewplonq/tf4hmwrk/tree/main/vpc
+
+
+
 <img src="https://github.com/user-attachments/assets/c6d9be90-fc22-43ec-be90-74571170914b" width ="500"  height ="700">
 
 
