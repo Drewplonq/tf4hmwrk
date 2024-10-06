@@ -8,6 +8,6 @@
 
 
 ### Задание 2
-
+<img src="https://github.com/user-attachments/assets/c6d9be90-fc22-43ec-be90-74571170914b" width ="500"  height ="700">
 
 
