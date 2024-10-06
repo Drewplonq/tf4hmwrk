@@ -1,4 +1,4 @@
-resource "yandex_vpc_network" "develop" {
+/*resource "yandex_vpc_network" "develop" {
   name = var.vpc_name
 }
 resource "yandex_vpc_subnet" "develop" {
@@ -6,15 +6,21 @@ resource "yandex_vpc_subnet" "develop" {
   zone           = var.default_zone
   network_id     = yandex_vpc_network.develop.id
   v4_cidr_blocks = var.default_cidr
+}*/
+module "vpc" {
+  source            = "./vpc"
+  env_name          = var.vpc_name
+  zone              = var.default_zone
+  v4_cidr_block     = var.default_cidr
 }
 
 
 module "marketing" {
   source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
   env_name       = var.vm_marketing.env_name
-  network_id     = yandex_vpc_network.develop.id
+  network_id     = module.vpc.vpc_network.id
   subnet_zones   = [var.default_zone]
-  subnet_ids     = [yandex_vpc_subnet.develop.id]
+  subnet_ids     = [module.vpc.vpc_subnet.id]
   instance_name  = var.vm_marketing.instance_name
   instance_count = var.vm_marketing.instance_count
   image_family   = var.vm_family
@@ -35,9 +41,9 @@ module "marketing" {
 module "analytics_vm" {
   source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
   env_name       = var.vm_analytics.env_name
-  network_id     = yandex_vpc_network.develop.id
+  network_id     = module.vpc.vpc_network.id
   subnet_zones   = [var.default_zone]
-  subnet_ids     = [yandex_vpc_subnet.develop.id]
+  subnet_ids     = [module.vpc.vpc_subnet.id]
   instance_name  = var.vm_analytics.instance_name
   instance_count = var.vm_analytics.instance_count
   image_family   = var.vm_family
@@ -57,7 +63,7 @@ module "analytics_vm" {
 data "template_file" "cloudinit" {
   template = file("./cloud-init.yml")
   vars = {
-    ssh_public_key     = local.ssh_key
+    ssh_public_key  = file(var.ssh_public_key)
     username           = var.username 
     }
 }

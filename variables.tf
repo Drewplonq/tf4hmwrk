@@ -27,17 +27,17 @@ variable "default_cidr" {
 
 variable "vpc_name" {
   type        = string
-  default     = "develop"
+  default     = "main"
   description = "VPC network&subnet name"
 }
 
 ###common vars
 
-/*variable "vms_ssh_root_key" {
+variable "vms_ssh_root_key" {
   type        = string
   default     = "your_ssh_ed25519_key"
   description = "ssh-keygen -t ed25519"
-}*/
+}
 
 ###example vm_web var
 variable "vm_web_name" {
@@ -100,4 +100,8 @@ variable "username" {
   type        = string
   default     = "ubuntu"
   description = "username for cloud-init"
+}
+variable "ssh_public_key" {
+  type    = string
+  default = "~/.ssh/id_ed25519.pub"
 }
